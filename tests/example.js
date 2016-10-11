@@ -4,7 +4,7 @@ const chai = require('chai')
 const expect = chai.expect
 const should = chai.should()
 
-const URL = 'http://localhost:2368/ghost'
+const URL = 'http://yahoo.com'
 
 describe('test yahoo search results', function () {
 	this.timeout(10000)
