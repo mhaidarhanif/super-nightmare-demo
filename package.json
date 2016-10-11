@@ -1,0 +1,24 @@
+{
+  "name": "nightmare-test",
+  "version": "1.0.0",
+  "dependencies": {
+    "chai": "3.5.0",
+    "nightmare": "2.7.0"
+  },
+  "devDependencies": {
+    "mocha": "3.1.2",
+    "mocha-generators": "1.2.0"
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "start": "node .",
+    "dev": "nodemon .",
+    "test": "mocha ./**/*.test.js",
+    "test:unit": "mocha tests/unit/*.js",
+    "test:e2e": "mocha tests/e2e/*.js"
+  }
+}
