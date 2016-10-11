@@ -1,6 +1,6 @@
 # Nightmare.js Test
 
-This demo E2E test is for stable [Ghost] version.
+This demo E2E test is for stable [Ghost](https://github.com/TryGhost/Ghost) version.
 
 ## Setup
 
