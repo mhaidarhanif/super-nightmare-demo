@@ -4,18 +4,20 @@ const expect = chai.expect
 const should = chai.should()
 
 const nightmare = Nightmare({
-	// openDevTools: {
-	// 	mode: 'detach'
-	// },
 	// waitTimeout: 5000,
 	// gotoTimeout: 5000,
 	// loadTimeout: 5000,
-	show: true
+	width: 1000,
+	height: 600,
+	show: true,
+	openDevTools: {
+		mode: 'detach'
+	}
 })
 
 const URL = 'http://localhost:2368/ghost'
 
-describe.skip('Create new post', function () {
+describe('Create new post', function () {
 	this.timeout(15000)
 
 	it.skip('Expect to be able to login with admin account', function (done) {
@@ -48,6 +50,7 @@ describe.skip('Create new post', function () {
 			.wait(1000) // hold on
 			.click('li.post-save-publish a') // publish draft
 			.click('li.delete a') // delete post
+			.click('button.btn-red') // confirm delete
 			.then(function () {
 				done()
 			})
@@ -75,24 +78,43 @@ describe.skip('Create new post', function () {
 	})
 })
 
-describe('Edit new post', function () {
+describe('Edit post', function () {
 	this.timeout(15000)
 
 	it('Expect to be able to edit post content', function (done) {
 		nightmare
 			.goto(`${URL}`)
-			.click('a.post-edit')
+			.wait('section.content-preview')
+			.click('.post-controls a.post-edit')
 			.type('input#entry-title', 'Hello Universe!')
 			.type('textarea.markdown-editor', 'Hello people of this universe!')
 			.click('li.post-save-draft a') // save draft first
 			.wait(1000) // hold on
-			.click('li.post-save-publish a') // publish draft
-			.click('li.delete a') // delete post
 			.then(function () {
 				done()
 			})
 			.catch(function (error) {
 				console.error('Edit post failed:', error)
+			})
+	})
+})
+
+describe.only('Delete post', function () {
+	this.timeout(15000)
+
+	it('Expect to be able to delete latest post', function (done) {
+		nightmare
+			.goto(`${URL}`)
+			.wait('section.content-preview')
+			.click('.post-controls a.post-edit') // go to edit page
+			.wait('textarea.markdown-editor')
+			.click('li.delete a') // delete post
+			.click('button.btn-red') // confirm delete
+			.then(function () {
+				done()
+			})
+			.catch(function (error) {
+				console.error('Delete post failed:', error)
 			})
 	})
 })
