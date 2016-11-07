@@ -24,8 +24,8 @@ describe('Create new post', function () {
 	it.skip('Expect to be able to login with admin account', function (done) {
 		nightmare
 			.goto(`${URL}/editor`)
-			.type('input.email', 'admin@mhaidarhanif.com')
-			.type('input.password', 'password')
+			.type('input.email', 'admin@admin.com')
+			.type('input.password', 'adminadmin')
 			.click('button.login')
 			.wait('input#entry-title')
 			.evaluate(function () {
